@@ -14,13 +14,11 @@ class GithubService {
    */
   async verifyWebhook(req) {
     const signature = req.headers['x-hub-signature-256'];
-
     return (
       typeof signature !== 'string' ||
       (await verify(process.env.GITHUB_WEBHOOK_SECRET, req.bodyRaw, signature))
     );
   }
-
   isIssueOpenedEvent(req) {
     return (
       req.headers['x-github-event'] === 'issues' &&

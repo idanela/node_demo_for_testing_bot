@@ -2,6 +2,7 @@ import GithubService from './github.js';
 import { throwIfMissing } from './utils.js';
 
 export default async ({ res, req, log, error }) => {
+
   throwIfMissing(process.env, ['GITHUB_WEBHOOK_SECRET', 'GITHUB_TOKEN']);
 
   const github = new GithubService();
@@ -12,7 +13,7 @@ export default async ({ res, req, log, error }) => {
   }
 
   if (!github.isIssueOpenedEvent(req)) {
-    log('Received non-issue event - ignoring');
+    console.log('Received non-issue event - ignoring');
     return res.json({ ok: true });
   }
 
