@@ -3,5 +3,5 @@ import { getAllSingers} from './singersHandlers.js';
 
 const singersRouter = Router();
 
-singersRouter.get('/',getAllSingers);
+singersRouter.post('/',getAllSingers);
 export default singersRouter
